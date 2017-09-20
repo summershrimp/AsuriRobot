@@ -1,0 +1,2 @@
+class RHGException(Exception):
+    pass
