@@ -20,7 +20,7 @@ class Fuzz:
         print "[*] Initialize fuzzer..."
         self.fuzzer = fuzzer.Fuzzer(
             self.binary, config.FUZZ_DIR, afl_count=config.FUZZER_WORKERS, force_interval=config.FUZZER_FORCE_INTERVAL,
-            create_dictionary=True, stuck_callback=None, time_limit=self.time_limit
+            create_dictionary=True, stuck_callback=self.drill_extension, time_limit=self.time_limit
         )
         print "[*] Starting fuzzer..."
         self.fuzzer.start()
@@ -35,3 +35,8 @@ class Fuzz:
         if not self.fuzzer:
             return False
         return self.fuzzer.found_crash()
+
+    def crashes(self):
+        if not self.fuzzer:
+            return []
+        return self.fuzzer.crashes()

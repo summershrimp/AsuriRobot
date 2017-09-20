@@ -21,6 +21,7 @@ class Challenge:
                 if chunk:
                     f.write(chunk)
         f.close()
+        os.chmod(p, 0755)
         return p
 
     def from_dict(self, m):
