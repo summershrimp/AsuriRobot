@@ -23,6 +23,10 @@ RUN bash -c "source /opt/asuri-robot/bin/activate \
     && pip install --no-binary :all: capstone \
     && mkdir -p /opt/asuri-robot/tmp/ \
     && cd /opt/asuri-robot/tmp/ \
+    && wget https://github.com/angr/tracer/archive/master.zip \
+    && unzip master.zip && rm master.zip && mv tracer-master tracer \
+    && cd tracer && pip install --no-binary :all: . \
+    && cd /opt/asuri-robot/tmp/ \
     && wget https://github.com/angr/angr/archive/master.zip \
     && unzip master.zip && rm master.zip && mv angr-master angr \
     && cd angr && pip install --no-binary :all: . \
